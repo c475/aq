@@ -72,8 +72,8 @@ void tile_set_active(Tile *tile, uint8_t active);
     Create/destroy functions
 */
 
-Tile tile_get_blank(int x, int y);
+Tile tile_get_blank(int16_t x, int16_t y);
 
-Tile *create_tiles(void);
+Tile *create_tiles(int map_size);
 
 #endif

@@ -15,9 +15,8 @@ typedef struct Config {
 } Config;
 
 
+Config *get_config(const char *config_file);
 
-Config *get_config(void);
-
-void destroy_config(void);
+void destroy_config(Config *config);
 
 #endif

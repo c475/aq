@@ -1,30 +1,22 @@
-CFLAGS=-g -O2 -Wall -Wextra -Isrc -rdynamic -DNDEBUG $(OPTFLAGS)
-LIBS=-ldl $(OPTLIBS)
-PREFIX?=/usr/local
+CC=cc
 
-SOURCES=$(wildcard lib/environment/*.c lib/system/*.c)
-OBJECTS=$(patsubst %.c,%.o,$(SOURCES))
+CFLAGS=-Wall -g
 
+LDFLAGS=$(shell pkg-config --libs allegro_color-5.0 allegro_acodec-5 allegro_font-5 allegro_physfs-5.0 allegro_dialog-5.0 allegro_dialog-5 allegro_acodec-5.0 allegro_main-5 allegro_image-5 allegro-5 allegro_ttf-5.0 allegro-5.0 allegro_primitives-5.0 allegro_primitives-5 allegro_physfs-5 allegro_main-5.0 allegro_audio-5 allegro_image-5.0 allegro_font-5.0 allegro_audio-5.0 allegro_memfile-5 allegro_memfile-5.0 allegro_ttf-5 allegro_color-5)
 
-TARGET=build/acquest.a
-SO_TARGET=$(patsubst %.a,%.so,$(TARGET))
+OUTPUT=ACQUEST
 
-all: $(TARGET) $(SO_TARGET)
+SOURCES=$(wildcard *.c src/**/*.c src/*.c)
+HEADERS=$(wildcard *.h src/**/*.h src/*.h)
 
-$(TARGET): CFLAGS += -fPIC
-$(TARGET): build $(OBJECTS)
-       ar rcs $@ $(OBJECTS)
-       ranlib $@
-
-$(SO_TARGET): $(TARGET) $(OBJECTS)
-       $(CC) -shared -o $@ $(OBJECTS)
-
-build:
-       @mkdir -p build
-       @mkdir -p bin
+all: $(SOURCES)
+	$(CC) $(CFLAGS) $(SOURCES) $(LDFLAGS) -o $(OUTPUT)
 
 clean:
-       rm -rf build $(OBJECTS) $(TESTS)
-       rm -f tests/tests.log
-       find . -name "*.gc*" -exec rm {} \;
-       rm -rf `find . -name "*.dSYM" -print`
+	rm -f *.o
+	rm -f src/*.o
+	rm -f src/environment/*.o
+	rm -f src/system/*.o
+	rm -f src/environment/*.gch
+	rm -f src/system/*.gch
+	rm -f $(OUTPUT)

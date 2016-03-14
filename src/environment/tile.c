@@ -94,7 +94,7 @@ void tile_set_selected(Tile *tile, uint8_t selected)
 
 void tile_set_active(Tile *tile, uint8_t active)
 {
-    int8_t flags = tile->flags:
+    int8_t flags = tile->flags;
     tile->flags = active ? flags | 4 : flags & 0xFC;
 }
 

@@ -9,8 +9,8 @@ typedef struct Map {
 } Map;
 
 
-Map *create_map(Map *world);
+Map *create_map(void);
 
-int destroy_map(Map *world);
+void destroy_map(Map *world);
 
 #endif

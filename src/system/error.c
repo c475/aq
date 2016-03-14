@@ -5,6 +5,6 @@
 
 void die(const char *message)
 {
-    fprintf(stderr, "ded");
+    fprintf(stderr, "%s\n", message);
     exit(1);
 }

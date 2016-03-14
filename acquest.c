@@ -7,8 +7,9 @@
 #include <allegro5/allegro_image.h>
 
 
-#include "system/ini.h"
-#include "environment/map.h"
+#include "src/system/ini.h"
+#include "src/system/error.h"
+#include "src/environment/map.h"
 
 
 // ALLEGRO_BITMAP *get_cursor(ALLEGRO_DISPLAY *display)
