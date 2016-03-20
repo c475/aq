@@ -15,29 +15,55 @@
 int main(int argc, char *argv[])
 {
     /*
-        SYSTEM *init_system(
+        AQ_SYSTEM *init_system(
             int width: display width,
             int height: display height
         );
     */
-    SYSTEM *sys = AQ_system_init(WINDOW_DEFAULT_WIDTH, WINDOW_DEFAULT_HEIGHT);
+    AQ_SYSTEM *sys = AQ_system_init(WINDOW_DEFAULT_WIDTH, WINDOW_DEFAULT_HEIGHT);
 
     /*
-        Probably return some sort of window object/abstraction here like SYSTEM
+        Probably return some sort of window object/abstraction here like AQ_SYSTEM
     */
     AQ_graphics_window_initialize(WINDOW_DEFAULT_WIDTH, WINDOW_DEFAULT_HEIGHT);
 
-    Map *map = AQ_environment_map_create();
+    EnvironmentMap *map = AQ_environment_map_create();
 
     while (sys->__RUNNING__) {
 
         /*
             Handle any events
         */
-        int event = AQ_system_state_event(sys->event);
+        int event = AQ_system_state_event(&sys->event);
 
         if (event) {
-            printf("there was some sort of event...\n");
+            
+            switch (sys->event.type) {
+
+                case SDL_QUIT:
+                    sys->__RUNNING__ = 0;
+                    break;
+
+                case SDL_KEYDOWN:
+
+                    switch (sys->event.key.keysym.sym) {
+
+                        case SDLK_ESCAPE:
+                            sys->__RUNNING__ = 0;
+                            break;
+
+                        default:
+                            break;
+
+                    }
+
+                    break;
+
+                default:
+
+                    break;
+            }
+
         }
 
 
@@ -45,6 +71,8 @@ int main(int argc, char *argv[])
             Flip back buffer
         */
         SDL_GL_SwapWindow(sys->window);
+
+        SDL_Delay(20);
     }
 
     /*

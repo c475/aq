@@ -28,7 +28,7 @@ AQ_SYSTEM *AQ_system_init(int width, int height)
         Create the window
     */
 
-    sys->window = SDL_CreateWindow("AQ", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 640, 480, SDL_WINDOW_OPENGL);
+    sys->window = SDL_CreateWindow("AQ", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, width, height, SDL_WINDOW_OPENGL);
 
     if (!sys->window) {
         AQ_system_destroy(sys);
@@ -50,7 +50,7 @@ AQ_SYSTEM *AQ_system_init(int width, int height)
 
     sys->event = event;
 
-    sys->__RUNNING__ = true;
+    sys->__RUNNING__ = 1;
 
     return sys;
 }

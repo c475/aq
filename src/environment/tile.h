@@ -75,6 +75,6 @@ void AQ_environment_tile_set_active(EnvironmentTile *tile, uint8_t active);
 
 EnvironmentTile AQ_environment_tile_get_blank(int16_t x, int16_t y);
 
-EnvironmentTile *create_tiles(int map_size);
+EnvironmentTile *AQ_environment_tile_create_tiles(int map_size);
 
 #endif

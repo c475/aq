@@ -117,7 +117,7 @@ EnvironmentTile AQ_environment_tile_get_blank(int16_t x, int16_t y)
     return tile;
 }
 
-EnvironmentTile *AQ_environment_create_tiles(int map_size)
+EnvironmentTile *AQ_environment_tile_create_tiles(int map_size)
 {
     EnvironmentTile *tile_buffer = malloc(sizeof(EnvironmentTile) * map_size);
     EnvironmentTile *tbp = tile_buffer;
@@ -131,7 +131,7 @@ EnvironmentTile *AQ_environment_create_tiles(int map_size)
 
     for (i = 0; i < map_size; i++, tbp++, x++) {
 
-        *tbp = tile_get_blank(x, y);
+        *tbp = AQ_environment_tile_get_blank(x, y);
 
         if (x + 1 == row_size) {
             x = -1;

@@ -1,4 +1,5 @@
 #include <SDL2/SDL.h>
+#include <OpenGL/gl.h>
 
 #include "window.h"
 

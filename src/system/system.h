@@ -7,7 +7,7 @@
 
 typedef struct AQ_SYSTEM {
 
-    bool __RUNNING__;
+    int __RUNNING__;
 
     SDL_Window *window;
 

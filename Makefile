@@ -4,6 +4,8 @@ CFLAGS=-Wall -g
 
 OUTPUT=ACQUEST
 
+LDFLAGS=$(shell pkg-config --libs sdl2)
+
 SOURCES=$(wildcard *.c src/**/*.c src/*.c)
 HEADERS=$(wildcard *.h src/**/*.h src/*.h)
 
@@ -11,7 +13,7 @@ HEADERS=$(wildcard *.h src/**/*.h src/*.h)
 FRAMEWORKS=-framework OpenGL -framework GLUT -framework Cocoa
 
 all: $(SOURCES)
-	$(CC) $(CFLAGS) $(SOURCES) $(FRAMEWORKS) -o $(OUTPUT)
+	$(CC) $(CFLAGS) $(SOURCES) $(LDFLAGS) $(FRAMEWORKS) -o $(OUTPUT)
 
 clean:
 	rm -f *.o

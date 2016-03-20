@@ -11,7 +11,7 @@ EnvironmentMap *AQ_environment_map_create(void)
     EnvironmentMap *map = malloc(sizeof(EnvironmentMap));
 
     // hard code map size for now
-    map->tiles = create_tiles(1024);
+    map->tiles = AQ_environment_tile_create_tiles(1024);
 
     return map;
 }
