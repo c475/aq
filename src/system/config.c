@@ -6,7 +6,7 @@
 Config *get_config(const char *config_file)
 {
     char buffer[256] = {'\0'};
-    snprintf(buffer, sizeof(buffer), "../../config/%s.conf", config_file);
+    snprintf(buffer, sizeof(buffer), "config/%s.conf", config_file);
 
     ALLEGRO_CONFIG *al_conf = al_load_config_file(buffer);
 
