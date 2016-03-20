@@ -15,6 +15,14 @@
 
 #include "src/environment/map.h"
 
+#include "src/graphics/window.h"
+
+#include "src/system/system.h"
+
+
+#define WINDOW_DEFAULT_WIDTH 640
+#define WINDOW_DEFAULT_HEIGHT 480
+
 
 int main(int argc, char *argv[])
 {
@@ -22,32 +30,68 @@ int main(int argc, char *argv[])
         die("init.");
     }
 
-    SYSTEM *sys = init_system();
+    /*
+        SYSTEM *init_system(
+            int width: display width,
+            int height: display height
+        );
+    */
 
-    glClearColor(0.0, 0.0, 0.0, 0.0);
-    glMatrixMode(GL_PROJECTION);
-    glLoadIdentity();
-    glClear(GL_COLOR_BUFFER_BIT);
+    SYSTEM *sys = init_system(WINDOW_DEFAULT_WIDTH, WINDOW_DEFAULT_HEIGHT);
 
-    glOrtho(0.0, 1.0, 0.0, 1.0, -1.0, 1.0);
+    /*
+        Probably return some sort of window object/abstraction here like SYSTEM
+    */
+
+    window_initialize(WINDOW_DEFAULT_WIDTH, WINDOW_DEFAULT_HEIGHT);
 
     Map *map = create_map();
 
-    while (1) {
+    while (sys->__RUNNING__) {
+
+        /*
+            Handle any events
+        */
 
         ALLEGRO_EVENT event = get_system_event(sys->event_queue);
 
-        printf("KEYPRESS: %d\n", event.keyboard.keycode);
+        switch (event.type) {
 
-        if (event.type == ALLEGRO_EVENT_DISPLAY_CLOSE) {
-            break;
-        } else if (event.keyboard.keycode == ALLEGRO_KEY_ESCAPE) {
-            break;
+            case ALLEGRO_EVENT_DISPLAY_CLOSE:
+                sys->__RUNNING__ = 0;
+                break;
+
+            case ALLEGRO_EVENT_KEY_DOWN:
+
+                if (event.keyboard.keycode == ALLEGRO_KEY_ESCAPE) {
+                    sys->__RUNNING__ = 0;
+                }
+
+                break;
+
+            case ALLEGRO_EVENT_DISPLAY_RESIZE:
+
+                window_resize(al_get_display_width(sys->display), al_get_display_height(sys->display));
+
+                break;
+
+            default:
+                break;
         }
 
+
+        /*
+            Flip back buffer then rest
+        */
+
         al_flip_display();
+
         al_rest(0.05);
     }
+
+    /*
+        Clean everything up
+    */
 
     destroy_system(sys);
     destroy_map(map);

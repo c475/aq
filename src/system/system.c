@@ -7,7 +7,7 @@
 #include "error.h"
 
 
-SYSTEM *init_system(void)
+SYSTEM *init_system(int width, int height)
 {
 
     /*
@@ -41,7 +41,7 @@ SYSTEM *init_system(void)
     sys->mouse_state = NULL;
     sys->keyboard_state = NULL;
 
-    sys->display = al_create_display(640, 480);
+    sys->display = al_create_display(width, height);
 
     if (!sys->display) {
         die("No display.");
@@ -107,8 +107,11 @@ SYSTEM *init_system(void)
         Set display options
     */
 
-    al_set_new_display_flags(ALLEGRO_FULLSCREEN_WINDOW | ALLEGRO_RESIZABLE | ALLEGRO_OPENGL);
+    al_set_new_display_flags(ALLEGRO_WINDOWED | ALLEGRO_RESIZABLE | ALLEGRO_OPENGL);
     al_set_new_display_refresh_rate(1);
+
+
+    sys->__RUNNING__ = 1;
 
     return sys;
 }

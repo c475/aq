@@ -4,7 +4,11 @@
 
 #include <allegro5/allegro.h>
 
+
 typedef struct SYSTEM {
+
+    int __RUNNING__;
+
     ALLEGRO_DISPLAY *display;
     ALLEGRO_EVENT_QUEUE *event_queue;
     ALLEGRO_MOUSE_STATE *mouse_state;
@@ -14,7 +18,10 @@ typedef struct SYSTEM {
     int keyboard;
 } SYSTEM;
 
-SYSTEM *init_system(void);
+
+SYSTEM *init_system(int width, int height);
+
 void destroy_system(SYSTEM *sys);
+
 
 #endif
