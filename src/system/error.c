@@ -3,7 +3,7 @@
 #include "error.h"
 
 
-void die(const char *message)
+void AQ_system_error_die(const char *message)
 {
     fprintf(stderr, "%s\n", message);
     exit(1);

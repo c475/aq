@@ -2,8 +2,8 @@
 
 #define SYSTEM_STATE_HEADER
 
-#include <allegro5/allegro.h>
+#include <SDL2/SDL.h>
 
-ALLEGRO_EVENT get_system_event(ALLEGRO_EVENT_QUEUE *event_queue);
+int AQ_system_state_event(SDL_Event *event);
 
 #endif

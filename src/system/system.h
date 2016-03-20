@@ -2,26 +2,25 @@
 
 #define SYSTEM_INI_HEADER
 
-#include <allegro5/allegro.h>
+#include <SDL2/SDL.h>
 
 
-typedef struct SYSTEM {
+typedef struct AQ_SYSTEM {
 
-    int __RUNNING__;
+    bool __RUNNING__;
 
-    ALLEGRO_DISPLAY *display;
-    ALLEGRO_EVENT_QUEUE *event_queue;
-    ALLEGRO_MOUSE_STATE *mouse_state;
-    ALLEGRO_KEYBOARD_STATE *keyboard_state;
+    SDL_Window *window;
 
-    int mouse;
-    int keyboard;
-} SYSTEM;
+    SDL_GLContext context;
+
+    SDL_Event event;
+
+} AQ_SYSTEM;
 
 
-SYSTEM *init_system(int width, int height);
+AQ_SYSTEM *AQ_system_init(int width, int height);
 
-void destroy_system(SYSTEM *sys);
+void AQ_system_destroy(AQ_SYSTEM *sys);
 
 
 #endif

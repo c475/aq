@@ -4,13 +4,15 @@
 
 #include "tile.h"
 
-typedef struct Map {
-    Tile *tiles;
-} Map;
+typedef struct EnvironmentMap {
+
+    EnvironmentTile *tiles;
+
+} EnvironmentMap;
 
 
-Map *create_map(void);
+EnvironmentMap *AQ_environment_map_create(void);
 
-void destroy_map(Map *world);
+void AQ_environment_map_destroy(EnvironmentMap *world);
 
 #endif

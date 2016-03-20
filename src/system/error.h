@@ -2,6 +2,6 @@
 
 #define SYSTEM_ERROR_HEADER
 
-void die(const char *message);
+void AQ_system_error_die(const char *message);
 
 #endif
