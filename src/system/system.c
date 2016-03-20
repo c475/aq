@@ -92,7 +92,7 @@ SYSTEM *init_system(void)
     */
 
     al_register_event_source(sys->event_queue, al_get_display_event_source(sys->display));
-
+    al_register_event_source(sys->event_queue, al_get_keyboard_event_source());
 
     /*
         Various add-on installation (fonts, images, etc)

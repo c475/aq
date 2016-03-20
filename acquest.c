@@ -22,29 +22,28 @@ int main(int argc, char *argv[])
         die("init.");
     }
 
-    ALLEGRO_KEYBOARD_STATE keyboard_state;
-
     SYSTEM *sys = init_system();
-
-    printf("INITIALIZED SYSTEM!\n");
 
     glClearColor(0.0, 0.0, 0.0, 0.0);
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
+    glClear(GL_COLOR_BUFFER_BIT);
 
     glOrtho(0.0, 1.0, 0.0, 1.0, -1.0, 1.0);
 
     Map *map = create_map();
 
-    printf("CREATED MAP\n");
+    while (1) {
 
-    while (!al_key_down(&keyboard_state, ALLEGRO_KEY_ESCAPE)) {
+        ALLEGRO_EVENT event = get_system_event(sys->event_queue);
 
-        // int event = handle_events(sys->event_queue);
+        printf("KEYPRESS: %d\n", event.keyboard.keycode);
 
-        // if (event == ALLEGRO_EVENT_DISPLAY_CLOSE) {
-        //     break;
-        // }
+        if (event.type == ALLEGRO_EVENT_DISPLAY_CLOSE) {
+            break;
+        } else if (event.keyboard.keycode == ALLEGRO_KEY_ESCAPE) {
+            break;
+        }
 
         al_flip_display();
         al_rest(0.05);

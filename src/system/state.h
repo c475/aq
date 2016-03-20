@@ -4,6 +4,6 @@
 
 #include <allegro5/allegro.h>
 
-int handle_events(ALLEGRO_EVENT_QUEUE *event_queue);
+ALLEGRO_EVENT get_system_event(ALLEGRO_EVENT_QUEUE *event_queue);
 
 #endif

@@ -5,7 +5,7 @@
 #define EVENTS_TIMEOUT 0.06
 
 
-int handle_events(ALLEGRO_EVENT_QUEUE *event_queue)
+ALLEGRO_EVENT get_system_event(ALLEGRO_EVENT_QUEUE *event_queue)
 {
     ALLEGRO_EVENT event;
     ALLEGRO_TIMEOUT timeout;
@@ -30,5 +30,5 @@ int handle_events(ALLEGRO_EVENT_QUEUE *event_queue)
         }
     }
 
-    return event.type;
+    return event;
 }
