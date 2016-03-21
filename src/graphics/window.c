@@ -31,7 +31,7 @@ void AQ_graphics_window_initialize(int width, int height)
     /*
         https://upload.wikimedia.org/wikipedia/commons/4/41/Graphical_projection_comparison.png
     */
-    glFrustum(-width, width, -height, height, -10, 10);
+    glFrustum(-width, width + 20, -height, height, -10, 10);
 
 
     /*
@@ -51,7 +51,6 @@ void AQ_graphics_window_initialize(int width, int height)
 /*
     This is the window resize callback to reinitialize a coordinate system based on x, y
 */
-
 void AQ_graphics_window_resize(int width, int height)
 {
     glViewport(0, 0, (GLsizei)width, (GLsizei)height);
