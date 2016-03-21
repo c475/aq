@@ -4,7 +4,6 @@
 
 #include <SDL2/SDL.h>
 
-
 typedef struct AQ_SYSTEM {
 
     int __RUNNING__;
@@ -21,6 +20,5 @@ typedef struct AQ_SYSTEM {
 AQ_SYSTEM *AQ_system_init(int width, int height);
 
 void AQ_system_destroy(AQ_SYSTEM *sys);
-
 
 #endif

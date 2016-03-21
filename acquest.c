@@ -7,6 +7,7 @@
 #include "src/system/system.h"
 #include "src/environment/map.h"
 #include "src/graphics/window.h"
+#include "src/graphics/axis.h"
 
 #define WINDOW_DEFAULT_WIDTH 640
 #define WINDOW_DEFAULT_HEIGHT 480
@@ -66,6 +67,7 @@ int main(int argc, char *argv[])
 
         }
 
+        AQ_graphics_axis_draw_axis(100.0);
 
         /*
             Flip back buffer
